@@ -1,62 +1,198 @@
-/**
- * created by lvfan
- * 2018-09-04
- */
+/* global Fluid, CONFIG */
 
-/**
- * @description 获取实时时间，写入 id 为 now-time 的标签中
- */
-(function () {
-    const divTime = document.getElementById('now-time');
+window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame;
 
-    function getTime() {
-        let time = new Date();
-        let hour = time.getHours() < 10 ? '0' + time.getHours() : time.getHours();
-        let minute = time.getMinutes() < 10 ? '0' + time.getMinutes() : time.getMinutes();
-        let second = time.getSeconds() < 10 ? '0' + time.getSeconds() : time.getSeconds();
-        divTime.innerText = hour + ':' + minute + ':' + second;
+Fluid.utils = {
+
+  listenScroll: function(callback) {
+    var dbc = new Debouncer(callback);
+    window.addEventListener('scroll', dbc, false);
+    dbc.handleEvent();
+    return dbc;
+  },
+
+  unlistenScroll: function(callback) {
+    window.removeEventListener('scroll', callback);
+  },
+
+  scrollToElement: function(target, offset) {
+    var of = jQuery(target).offset();
+    if (of) {
+      jQuery('html,body').animate({
+        scrollTop: of.top + (offset || 0),
+        easing   : 'swing'
+      });
+    }
+  },
+
+  elementInViewport: function(element, heightFactor) {
+    heightFactor = heightFactor || 1;
+    var rect = element.getBoundingClientRect();
+    var height = window.innerHeight || document.documentElement.clientHeight;
+    var top = rect.top;
+    return (top >= 0 && top <= height * (heightFactor + 1))
+      || (top <= 0 && top >= -(height * heightFactor) - rect.height);
+  },
+
+  waitElementVisible: function(selectorsOrElement, callback, heightFactor) {
+    var runningOnBrowser = typeof window !== 'undefined';
+    var isBot = (runningOnBrowser && !('onscroll' in window)) || (typeof navigator !== 'undefined'
+        && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+    var supportsIntersectionObserver = 'IntersectionObserver' in window;
+
+    if (!runningOnBrowser || isBot) {
+      callback();
+      return;
     }
 
-    getTime();
-    setInterval(function () {
-        getTime();
-    }, 1000);
-}());
-
-/**
- * @description 判断当前页面是否为活动页
- */
-(function () {
-    // 网页当前状态判断
-    let state, visibilityChange, status, doc = document;
-    if (typeof document.hidden !== 'undefined') {
-        visibilityChange = 'visibilitychange';
-        state = 'visibilityState';
-    } else if (typeof document.mozHidden !== 'undefined') {
-        visibilityChange = 'mozvisibilitychange';
-        state = 'mozVisibilityState';
-    } else if (typeof document.msHidden !== 'undefined') {
-        visibilityChange = 'msvisibilitychange';
-        state = 'msVisibilityState';
-    } else if (typeof document.webkitHidden !== 'undefined') {
-        visibilityChange = 'webkitvisibilitychange';
-        state = 'webkitVisibilityState';
+    var target;
+    if (typeof selectorsOrElement === 'string') {
+      target = document.querySelector(selectorsOrElement);
+    } else {
+      target = selectorsOrElement;
     }
-    let docText = doc.title;
-    // 添加监听器，在title里显示状态变化
-    doc.addEventListener(visibilityChange, function () {
-        if (doc[state] === 'visible') {
-            doc.title = '欢迎回来！d(`･∀･)b 👏';
-            status = setTimeout(() => {
-                doc.title = docText;
-            }, 1000);
-        } else {
-            doc.title = '藏起来了d(`x_x)b';
-            if (status) {
-                clearTimeout(status);
-            }
+
+    var _heightFactor = heightFactor || 2;
+
+    if (Fluid.utils.elementInViewport(target, _heightFactor)) {
+      callback();
+      return;
+    }
+
+    if (supportsIntersectionObserver) {
+      var io = new IntersectionObserver(function(entries, ob) {
+        if (entries[0].isIntersecting) {
+          callback();
+          ob.disconnect();
         }
-    }, false);
-    // 初始化页面状态
-    // doc.title = '吕钒的后花园';
-}());
+      }, {
+        threshold : [0],
+        rootMargin: (window.innerHeight || document.documentElement.clientHeight) + 'px'
+      });
+      io.observe(target);
+    } else {
+      var warpCallback = Fluid.utils.listenScroll(function() {
+        if (Fluid.utils.elementInViewport(target, _heightFactor)) {
+          Fluid.utils.unlistenScroll(warpCallback);
+          callback();
+        }
+      });
+    }
+  },
+
+  waitElementLoaded: function(targetId, callback) {
+    var runningOnBrowser = typeof window !== 'undefined';
+    var isBot = (runningOnBrowser && !('onscroll' in window)) || (typeof navigator !== 'undefined'
+    && /(gle|ing|ro|msn)bot|crawl|spider|yand|duckgo/i.test(navigator.userAgent));
+
+    if (!runningOnBrowser || isBot) {
+      callback();
+      return;
+    }
+
+    if ('MutationObserver' in window) {
+      var mo = new MutationObserver(function(records, ob) {
+        var ele = document.getElementById(targetId);
+        if (ele) {
+          callback();
+          ob.disconnect();
+        }
+      });
+      mo.observe(document, { childList: true, subtree: true });
+    } else {
+      document.addEventListener('DOMContentLoaded', function() {
+        callback();
+      });
+    }
+  },
+
+  createScript: function(url, onload) {
+    var s = document.createElement('script');
+    s.setAttribute('src', url);
+    s.setAttribute('type', 'text/javascript');
+    s.setAttribute('charset', 'UTF-8');
+    s.async = false;
+    if (typeof onload === 'function') {
+      if (window.attachEvent) {
+        s.onreadystatechange = function() {
+          var e = s.readyState;
+          if (e === 'loaded' || e === 'complete') {
+            s.onreadystatechange = null;
+            onload();
+          }
+        };
+      } else {
+        s.onload = onload;
+      }
+    }
+    var e = document.getElementsByTagName('script')[0]
+    || document.getElementsByTagName('head')[0]
+    || document.head || document.documentElement;
+    e.parentNode.insertBefore(s, e);
+  },
+
+  createCssLink: function(url) {
+    var l = document.createElement('link');
+    l.setAttribute('rel', 'stylesheet');
+    l.setAttribute('type', 'text/css');
+    l.setAttribute('href', url);
+    var e = document.getElementsByTagName('link')[0]
+    || document.getElementsByTagName('head')[0]
+    || document.head || document.documentElement;
+    e.parentNode.insertBefore(l, e);
+  },
+
+  loadComments: function(selectors, loadFunc) {
+    var ele = document.querySelector('#comments[lazyload]');
+    if (ele) {
+      var callback = function() {
+        loadFunc();
+        ele.removeAttribute('lazyload');
+      };
+      Fluid.utils.waitElementVisible(selectors, callback, CONFIG.lazyload.offset_factor);
+    } else {
+      loadFunc();
+    }
+  }
+
+};
+
+/**
+ * Handles debouncing of events via requestAnimationFrame
+ * @see http://www.html5rocks.com/en/tutorials/speed/animations/
+ * @param {Function} callback The callback to handle whichever event
+ */
+function Debouncer(callback) {
+  this.callback = callback;
+  this.ticking = false;
+}
+Debouncer.prototype = {
+  constructor: Debouncer,
+
+  /**
+   * dispatches the event to the supplied callback
+   * @private
+   */
+  update: function() {
+    this.callback && this.callback();
+    this.ticking = false;
+  },
+
+  /**
+   * ensures events don't get stacked
+   * @private
+   */
+  requestTick: function() {
+    if (!this.ticking) {
+      requestAnimationFrame(this.rafCallback || (this.rafCallback = this.update.bind(this)));
+      this.ticking = true;
+    }
+  },
+
+  /**
+   * Attach this as the event listeners
+   */
+  handleEvent: function() {
+    this.requestTick();
+  }
+};
