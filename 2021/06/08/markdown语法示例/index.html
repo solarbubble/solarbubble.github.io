@@ -158,7 +158,7 @@
 </nav>
 
     <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
+         style="background: url('/images/banner/desktop.jpg') no-repeat center center;
            background-size: cover;">
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      620 字
+      868 字
     </span>
   
 
@@ -195,7 +195,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      6
+      9
        分钟
     </span>
   
@@ -242,7 +242,8 @@
 <hr>
 <h2 id="删除线"><a href="#删除线" class="headerlink" title="删除线"></a>删除线</h2><p>文字两端加2个’~’<br><del>测试删除线</del></p>
 <h2 id="下划线"><a href="#下划线" class="headerlink" title="下划线"></a>下划线</h2><p>文字两端用HTML的’&lt;u&gt;‘标签包裹<br><u>测试下划线</u></p>
-<h2 id="脚注-暂不支持"><a href="#脚注-暂不支持" class="headerlink" title="脚注(暂不支持)"></a>脚注(暂不支持)</h2><p>创建脚注格式类似这样 [^RUNOOB]。<br>[^RUNOOB]: 菜鸟教程 – 学的不仅是技术，更是梦想！！！</p>
+<h2 id="脚注-只支持数字"><a href="#脚注-只支持数字" class="headerlink" title="脚注(只支持数字)"></a>脚注(只支持数字)</h2><p>方法：文字后加’[^数字]‘，下一行添加注释’[^数字]: xxxxx注释’<br>例子：创建脚注格式类似这样 <sup id="fnref:1" class="footnote-ref"><a href="#fn:1" rel="footnote"><span class="hint--top hint--rounded" aria-label="菜鸟教程 – 学的不仅是技术，更是梦想！！！
+">[1]</span></a></sup>。</p>
 <h1 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h1><p>无序列表使用’*’或’+’或’-‘，后面要加个空格</p>
 <ul>
 <li>第一项</li>
@@ -303,18 +304,73 @@
 <h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>将4个空格或一个制表符(Tab)加在每行开头，或者用’```’包裹，也可以指定一种语言</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs javascript">$(<span class="hljs-built_in">document</span>).ready(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>  alert(<span class="hljs-string">&#x27;RUNOOB&#x27;</span>);<br>&#125;);<br></code></pre></td></tr></table></figure>
 
-<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>使用方法：[链接名称](链接地址)<br>例子：我使用<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue</a>开发公众号</p>
+<h1 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h1><p>方法：[链接名称](链接地址)<br>例子：我使用<a target="_blank" rel="noopener" href="https://cn.vuejs.org/">Vue</a>开发公众号</p>
 <h2 id="高级链接"><a href="#高级链接" class="headerlink" title="高级链接"></a>高级链接</h2><p>可以将链接设置为一个变量，在文档末尾(需要隔一行)进行赋值</p>
-<p><a target="_blank" rel="noopener" href="https://www.baidu.com/">百度</a> 这个链接使用 1 作为链接变量<br><a target="_blank" rel="noopener" href="https://youzan.github.io/vant/#/zh-CN/">Vant</a> 这个链接使用 vant 作为链接变量</p>
-<h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>使用方法：![alt属性文本](图片地址 “可选标题”)<br>例子：<img src="http://static.runoob.com/images/runoob-logo.png" srcset="/img/loading.gif" lazyload alt="runoob logo"></p>
+<p><a target="_blank" rel="noopener" href="https://www.baidu.com/">百度</a> 这个链接使用 6 作为链接变量<br><a target="_blank" rel="noopener" href="https://youzan.github.io/vant/#/zh-CN/">Vant</a> 这个链接使用 vant 作为链接变量</p>
+<h1 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h1><p>方法：![alt属性文本](图片地址 “可选标题”)<br>网络图片例子：<img src="http://static.runoob.com/images/runoob-logo.png" srcset="/img/loading.gif" lazyload alt="runoob logo"><br>本地图片放在source/images下，使用绝对路径引用：<img src="/images/test1.png" srcset="/img/loading.gif" lazyload alt="test1"></p>
 <p>使用变量例子： 这个链接用 2 作为网址变量 <a target="_blank" rel="noopener" href="http://static.runoob.com/images/runoob-logo.png">RUNOOB</a></p>
 <p>使用&lt;img&gt;标签可以指定宽度高<br><img src="http://static.runoob.com/images/runoob-logo.png" srcset="/img/loading.gif" lazyload width="50%" height="auto"></p>
-<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1>
+<h1 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h1><p>方法：用’|’来分隔单元格，用1个以上的’-‘来分隔表头</p>
+<table>
+<thead>
+<tr>
+<th>表头1</th>
+<th>表头2</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>单元格1</td>
+<td>单元格2</td>
+</tr>
+<tr>
+<td>单元格3</td>
+<td>单元格4</td>
+</tr>
+</tbody></table>
+<p>对齐方式：用’:-‘，’-:’，’:-:’分别代表左对齐，右对齐，居中对齐</p>
+<table>
+<thead>
+<tr>
+<th align="left">表头1</th>
+<th align="right">表头2</th>
+<th align="center">表头3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">单元格1</td>
+<td align="right">单元格2</td>
+<td align="center">单元格3</td>
+</tr>
+<tr>
+<td align="left">单元格4</td>
+<td align="right">单元格5</td>
+<td align="center">单元格6</td>
+</tr>
+</tbody></table>
+<h1 id="高级技巧"><a href="#高级技巧" class="headerlink" title="高级技巧"></a>高级技巧</h1><h2 id="支持的HTML元素"><a href="#支持的HTML元素" class="headerlink" title="支持的HTML元素"></a>支持的HTML元素</h2><p>&lt;kbd&gt; &lt;b&gt; &lt;i&gt; &lt;em&gt; &lt;sup&gt; &lt;sub&gt; &lt;br&gt;</p>
+<p><kbd>这是kbd</kbd> <b>这是b</b> <i>这是i</i> <em>这是em</em> <sup>这是sup</sup>正常的文字<sub>这是sub</sub><br>第一行<br>第二行被br换行</p>
+<h2 id="支持转义的符号"><a href="#支持转义的符号" class="headerlink" title="支持转义的符号"></a>支持转义的符号</h2><p>符号前加上 <kbd>\</kbd> 转义特殊字符</p>
+<p>\   反斜线<br>`   反引号<br>*   星号<br>_   下划线<br>{}  花括号<br>[]  方括号<br>()  小括号<br>#   井字号<br>+   加号<br>-   减号<br>.   英文句点<br>!   感叹号<section class="footnotes"><div class="footnote-list"><ol><li><span id="fn:1" class="footnote-text"><span>菜鸟教程 – 学的不仅是技术，更是梦想！！！<br><a href="#fnref:1" rev="footnote" class="footnote-backref"> ↩</a></span></span></li></ol></div></section></p>
+
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/markdown/">markdown</a>
+                    
+                  </div>
                 
               </div>
               
@@ -332,12 +388,6 @@
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2021/06/08/hello-world/">
-                        <span class="hidden-mobile">Hello World</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
