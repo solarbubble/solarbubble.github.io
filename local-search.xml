@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>用H5的getUserMedia在浏览器调取摄像头</title>
+    <link href="/2021/06/24/%E7%94%A8H5%E7%9A%84getUserMedia%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4/"/>
+    <url>/2021/06/24/%E7%94%A8H5%E7%9A%84getUserMedia%E5%9C%A8%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B0%83%E5%8F%96%E6%91%84%E5%83%8F%E5%A4%B4/</url>
+    
+    <content type="html"><![CDATA[<h1 id="在浏览器调取摄像头"><a href="#在浏览器调取摄像头" class="headerlink" title="在浏览器调取摄像头"></a>在浏览器调取摄像头</h1><p>MDN链接：<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia()</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>H5</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>用vercel托管网站</title>
     <link href="/2021/06/23/%E7%94%A8vercel%E6%89%98%E7%AE%A1%E7%BD%91%E7%AB%99/"/>
     <url>/2021/06/23/%E7%94%A8vercel%E6%89%98%E7%AE%A1%E7%BD%91%E7%AB%99/</url>
@@ -11,6 +36,18 @@
     <content type="html"><![CDATA[<p>如何用vercel托管多个github上的网站</p>]]></content>
     
     
+    <categories>
+      
+      <category>技术</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>建站</tag>
+      
+    </tags>
     
   </entry>
   
