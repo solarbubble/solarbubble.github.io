@@ -18,7 +18,7 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-  <title>用vercel托管网站 - Hexo</title>
+  <title>H5录像功能 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" />
 
@@ -163,7 +163,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="用vercel托管网站">
+            <span class="h2" id="subtitle" title="H5录像功能">
               
             </span>
 
@@ -173,8 +173,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-06-23 16:49" pubdate>
-        2021年6月23日 下午
+      <time datetime="2021-06-24 17:30" pubdate>
+        2021年6月24日 下午
       </time>
     </span>
   
@@ -185,7 +185,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      12 字
+      56 字
     </span>
   
 
@@ -225,10 +225,19 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">用vercel托管网站</h1>
+            <h1 style="display: none">H5录像功能</h1>
             
             <div class="markdown-body">
-              <p>如何用vercel托管多个github上的网站</p>
+              <h2 id="方法1：input标签type-file"><a href="#方法1：input标签type-file" class="headerlink" title="方法1：input标签type=file"></a>方法1：input标签type=file</h2><h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;file&quot;</span> <span class="hljs-attr">multiple</span> <span class="hljs-attr">accept</span>=<span class="hljs-string">&quot;video/*&quot;</span>/&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="demo"><a href="#demo" class="headerlink" title="demo"></a>demo</h3><p><a target="_blank" rel="noopener" href="https://vue.solarbubble.vercel.app/callCamera">链接</a></p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ul>
+<li>兼容性好</li>
+</ul>
+<h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ul>
+<li>拍摄视频不能设置分辨率，大小不可控</li>
+</ul>
+<h2 id="方法2：getUserMedia"><a href="#方法2：getUserMedia" class="headerlink" title="方法2：getUserMedia"></a>方法2：getUserMedia</h2><p>MDN链接：<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/MediaDevices/getUserMedia">MediaDevices.getUserMedia()</a></p>
 
             </div>
             <hr>
@@ -246,7 +255,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E5%BB%BA%E7%AB%99/">建站</a>
+                      <a class="hover-with-bg" href="/tags/H5/">H5</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%BD%95%E5%83%8F/">录像</a>
                     
                   </div>
                 
@@ -263,18 +274,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/06/24/H5%E5%BD%95%E5%83%8F%E5%8A%9F%E8%83%BD/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">H5录像功能</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/06/08/markdown%E8%AF%AD%E6%B3%95%E7%A4%BA%E4%BE%8B/">
-                        <span class="hidden-mobile">markdown语法示例</span>
+                      <a href="/2021/06/23/%E7%94%A8vercel%E6%89%98%E7%AE%A1%E7%BD%91%E7%AB%99/">
+                        <span class="hidden-mobile">用vercel托管网站</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
